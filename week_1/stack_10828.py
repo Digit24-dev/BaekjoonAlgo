@@ -1,6 +1,6 @@
 import sys
 
-class MyStack():
+class MyStack:
     def __init__(self) -> None:
         self.arr = []
         self.top = -1
