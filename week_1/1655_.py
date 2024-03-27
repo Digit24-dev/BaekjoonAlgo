@@ -1,14 +1,22 @@
 import sys
-from heapq import heapify, heappop, heappush
-
-a = []
+ 푸 는 중 
+input = sys.stdin.readline
 
 # 100,000
 N = int(input())
 
-while N > 0:
-    N -= 1
-    a.append(int(sys.stdin.readline()))
-    heapify(a)
+maxArr = [0] * N
+minArr = [0] * N
 
-    print(a[len(a)//2])
+for i in range(N):
+    number = int(input())
+    
+    maxArr[i] = number
+    minArr[i] = number
+
+    maxArr[:i+1] = sorted(maxArr[:i+1], reverse=True)
+    minArr[:i+1] = sorted(minArr[:i+1], reverse=False)
+
+    midIdx = i // 2
+
+    print(min(maxArr[midIdx], minArr[midIdx]))
