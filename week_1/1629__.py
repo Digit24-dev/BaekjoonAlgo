@@ -7,9 +7,9 @@ def pwr(A, n):
         return A % C
     else:
         tmp = pwr(A, n//2)
-        if n % 2 == 0:
+        if n & 0x01 == 0:
             return (tmp * tmp) % C
         else:
-            return (tmp * tmp * a) % C
+            return (tmp * tmp * A) % C
         
 print(pwr(A, B))
