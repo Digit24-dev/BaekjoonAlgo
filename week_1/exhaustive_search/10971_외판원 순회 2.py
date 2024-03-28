@@ -50,6 +50,8 @@ for i in range(N):
 
 print(answer)
 
+# bfs 로도 풀어보기
+
 # q = queue.Queue()
 # def bfs():
 #     # 탐색 - bfs

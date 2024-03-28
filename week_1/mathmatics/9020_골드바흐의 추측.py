@@ -8,6 +8,7 @@ start = time.time()
 arr = [0 for i in range(10001)]
 arr[1] = 0
 
+# 일정 범위 까지 에라토스테네스의 체 사용
 for i in range(2, 10000):
     for j in range(2, 10000):
         if i * j >= 10001:

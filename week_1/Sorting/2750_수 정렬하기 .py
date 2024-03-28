@@ -25,7 +25,7 @@ for key in range(0, N):
             arr[idx - 1], arr[idx] = arr[idx], arr[idx - 1]
 
 
-# merge sort
+# merge sort - 병합 정렬 다시 쓰기
 def merge_sort(arr):
     if len(arr) < 2:
         return arr
@@ -41,8 +41,6 @@ def merge_sort(arr):
     merged_arr = []
     if left > right:
         merged_arr.append(left, right)
-
-if:
 
 print('=========')
 
