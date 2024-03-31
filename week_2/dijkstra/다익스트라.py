@@ -1,4 +1,5 @@
 import heapq
+INF = int(1e9)
 
 graph = {
     'A': {'B': 8, 'C': 1, 'D': 2},
@@ -9,6 +10,7 @@ graph = {
     'F': {'A': 5}
 }
 
+####### 연결 리스트 형태의 다익스트라 ############
 def dijkstra(graph, start):
     distances = {node: float('inf') for node in graph}      # start로 부터의 거리 값을 저장하기 위함
     distances[start] = 0
@@ -28,5 +30,29 @@ def dijkstra(graph, start):
                 heapq.heappush(queue, [distance, new_destination])          # 다음 인접 거리를 계산하기 위해 큐에 삽입
 
     return distances
+
+####### 행렬 형태의 다익스트라 ##############
+def dijkstra(graph, start):
+    distances = [INF for _ in range(N + 1)]
+    distances[start] = 0
+
+    q = []
+    heapq.heappush(q, [distances[start], start])
+
+    while q:
+        cur_distance, cur_destination = heapq.heappop(q)
+        
+        if cur_distance > distances[cur_destination]:
+            continue
+        
+        for new_destination in range(1, N + 1):
+            if graph[cur_destination][new_destination] == 1:
+                new_distance = cur_distance + 1
+                if new_distance < distances[new_destination]:
+                    distances[new_destination] = new_distance
+                    heapq.heappush(q, [new_distance, new_destination])
+
+    return distances
+
 
 print(dijkstra(graph, 'C'))
