@@ -30,13 +30,14 @@ def topology_sort():
         
         for i in graph[current]:
             # current로부터 나가는 간선 제거
-            indegree[i] -= 1
+            indegree[i] -= 1        # 간선 삭제 과정
             if indegree[i] == 0:
                 queue.append(i)
 
     # 출력 : 1 2 3 4 5
-    for i in result:
-        print(i, end='')
+    # for i in result:
+    #     print(i, end='')
+    print(*result)
 
 
 topology_sort()
