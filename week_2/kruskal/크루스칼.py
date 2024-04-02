@@ -3,9 +3,9 @@ input = sys.stdin.readline
 
 v, e = map(int, input().split())
 # 부모 테이블 초기화
-parent = [0] * (v + 1)
+parents = [0] * (v + 1)
 for i in range(1, v + 1):
-    parent[i] = i
+    parents[i] = i
 
 # find 연산
 def find_parent(parent, x):
@@ -38,8 +38,8 @@ edges.sort()
 for i in range(e):
     cost, a, b = edges[i]
     # find 연산 후, 부모노드 다르면 사이클 발생하지 않으므로 union 연산 수행 -> 최소 신장 트리에 포함
-    if find_parent(parent, a) != find_parent(parent, b):
-        union_parent(parent, a, b)
+    if find_parent(parents, a) != find_parent(parents, b):
+        union_parent(parents, a, b)
         total_cost += cost
 
 print(total_cost)

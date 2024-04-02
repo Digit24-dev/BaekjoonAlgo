@@ -2,8 +2,6 @@ import sys
 sys.setrecursionlimit(10**6)
 input = sys.stdin.readline
 
-graph = []
-
 class Node():
     def __init__(self, item):
         self.item = item
