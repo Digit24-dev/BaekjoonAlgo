@@ -1,49 +1,47 @@
 import sys
 from collections import deque
-import copy
 input = sys.stdin.readline
 
 N, M = map(int, input().split())
 board = [list(map(int, input().split())) for _ in range(N)]
-visited = [[False] * (M) for _ in range(N)]
+# visited = [[False] * (M) for _ in range(N)]
 
 di = [1, 0, -1, 0]
 dj = [0, 1, 0, -1]
 
-def debug(board=board):
-    for i in range(N):
-        for j in range(M):
-            print(board[i][j], end=' ')
-        print()
+# def debug(board=board):
+#     for i in range(N):
+#         for j in range(M):
+#             print(board[i][j], end=' ')
+#         print()
+
+#######################################################
 
 def melting():
     global board
-    copyBoard = copy.deepcopy(board)
+    toEraseQ = deque()
 
     for i in range(N):
         for j in range(M):
             if board[i][j] == 0:
                 continue
+            c = 0
+            for dir in range(4):
+                ni = i + di[dir]
+                nj = j + dj[dir]
 
-            c = meltToCNT(i, j)
+                if 0 <= ni < N and 0 <= nj < M and board[ni][nj] == 0:
+                    c += 1
+            toEraseQ.append((i, j, board[i][j] - c))
+            
+    while toEraseQ:
+        i, j, c = toEraseQ.popleft()
+        if c < 0:
+            board[i][j] = 0
+        else:
+            board[i][j] = c
 
-            if board[i][j] - c < 0:
-                copyBoard[i][j] = 0
-            else:
-                copyBoard[i][j] -= c
-
-    board = copy.deepcopy(copyBoard)
-
-def meltToCNT(i, j):
-    cnt = 0
-    for dir in range(4):
-        ni = i + di[dir]
-        nj = j + dj[dir]
-
-        if 0 <= ni < N and 0 <= nj < M and board[ni][nj] == 0:
-            cnt += 1
-    
-    return cnt
+#######################################################
 
 def isDone():  # bfs
     searchedOne = False
@@ -99,9 +97,6 @@ while True:
     if not searchedOne:
         print(0)
         break
-
-
-
 
 '''
 5 5

@@ -23,8 +23,8 @@ for i in range(1, N + 1):
         basic_parts_list.append(i)
 # 기본 부품 등록 END
 
-# print(graph)
-# print(indegree)
+print(graph)
+print(indegree)
 # print(basic_parts)
 
 # topology sort
@@ -51,6 +51,7 @@ def topology_sort():
     return result
 
 sorted_result = topology_sort()
+print(sorted_result)
 
 for i in sorted_result:
     for idx, cnt in graph[i]:
