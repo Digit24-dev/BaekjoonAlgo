@@ -15,18 +15,9 @@ def solve():
         graph[a].append(b)
         graph[b].append(a)
 
-    # print('===============')
-    # for i in range(1, V + 1):
-    #     print(graph[i])
-    # print('===============')
-
     for startNode in range(1, V + 1):
         if visited[startNode] == True:
             continue
-
-        # print('============')
-        # print(startNode)
-        # print('============')
 
         q = deque()
         q.append(startNode)
