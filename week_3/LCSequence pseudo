@@ -1,0 +1,5 @@
+
+if i == 0 or f == 0:
+	LCD[i][j] = 0
+elif stringA[i] == stringB[j]:
+	LCS[i][j] = max(LCS[i-1][j], LCS[i][j-1])
