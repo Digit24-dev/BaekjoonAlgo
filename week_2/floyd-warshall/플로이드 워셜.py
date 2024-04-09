@@ -1,6 +1,6 @@
 import sys
 input = sys.stdin.readline
-INF = int(1e9)
+INF = int(1e6)
 
 # 노드의 개수(n)과 간선의 개수(m) 입력
 n = int(input())
@@ -15,6 +15,12 @@ for a in range(1, n + 1):
         if a == b:
             graph[a][b] = 0
 
+def debug():
+    for i in range(n + 1):
+        for j in range(n + 1):
+            print(graph[i][j], end='\t\t\t')
+        print()
+
 # 각 간선에 대한 정보를 입력받아, 그 값으로 초기화
 for _ in range(m):
     # A -> B로 가는 비용을 C라고 설정
@@ -26,12 +32,14 @@ for _ in range(m):
     
 print('==== 플로이드 와샬 진행중 ====')
 
-for k in range(1, n + 1):
+for k in range(n + 1):
     for a in range(1, n + 1):
         for b in range(1, n + 1):
-            if a == 4 and b == 2:
-                print(k, graph[a][b], ' -> ', graph[a][k], graph[k][b])
+            # if a == 4 and b == 2:
+            #     print(k, graph[a][b], ' -> ', graph[a][k], graph[k][b])
             graph[a][b] = min(graph[a][b], graph[a][k] + graph[k][b])
+    input()
+    debug()
 
 # 만약 네 개의 간선을 통해 가는 경로일 경우에 생각을 해보면
 # a->b 가는 경로는 없을 때 어떻게 아는가?
