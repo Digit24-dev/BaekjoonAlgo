@@ -1,36 +1,24 @@
-import sys
+from sys import stdin
 
-input = sys.stdin.readline
-
-def mulMatrix(a: tuple, b: tuple):
-    return a[0] * a[1] * b[1], (a[0], b[1])
+input = stdin.readline
 
 N = int(input())
-visited = [0] * (N)
-
-matrixes = []
+matrix = []
+dp = [[0] * N for _ in range(N)]
 
 for i in range(N):
-    r, c = map(int, input().split())
-    matrixes.append((r,c))
+    matrix.append(list(map(int, input().split())))
 
-print(matrixes)
+for i in range(1, N):
+    for j in range(0, N-i):
+        if i == 1:
+            dp[j][j+1] = matrix[j][0] * matrix[j][1] * matrix[j+i][1]
+            continue
 
-for i in range(len(matrixes) - 1):
-    data, ret = mulMatrix(matrixes[i], matrixes[i+1])
+        dp[j][j+i] = 2**32
+        for k in range(j, j+i):
+            dp[j][j+i] = min(dp[j][j+i],
+                             dp[j][k] + dp[k+1][j+i] + matrix[j][0] * matrix[k][1] * matrix[j+i][1])
 
-arr = []
-
-def dfs(cnt):
-    if cnt == N:
-        print(arr)
-        return
-    for i in range(N):
-        if not visited[i]:
-            visited[i] = True
-            arr.append(i)
-            dfs(cnt + 1, i)
-            visited[i] = False
-            arr.pop()
-
-dfs(0, 0)
+print(dp)
+print(dp[0][N-1])
