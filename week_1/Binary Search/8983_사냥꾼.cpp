@@ -8,7 +8,7 @@
 using namespace std;
 
 int M, N, L;
-int ans = 0;
+int pic_cnt = 0;
 int mid;
 
 vector<int> camp;
