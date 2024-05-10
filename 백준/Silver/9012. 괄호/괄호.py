@@ -1,29 +1,25 @@
-T = int(input())
+import sys
+input = sys.stdin.readline
 
+N = int(input())
 
-def check(strings):
-    stack = []
-
-    for i in strings:
-        if i == '(':
-            stack.append(i)
-        else:
-            if not stack:
+for _ in range(N):
+    line = input()
+    st = []
+    flag = False
+    for c in line:
+        if c == '(':
+            st.append(c)
+        elif c == ')':
+            if not st:
                 print("NO")
-                return
+                flag = True
+                break
             else:
-                stack.pop()
-
-    if not stack:
-        print("YES")
-        return
-    else:
+                st.pop()
+    if flag:
+        pass
+    elif st:
         print("NO")
-        return
-
-
-for _ in range(T):
-    n = input()
-    check(n)
-
-
+    else:
+        print("YES")
