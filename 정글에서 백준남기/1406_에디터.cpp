@@ -1,86 +1,47 @@
 #include <iostream>
+#include <list>
 #include <string>
-#include <vector>
 
 using namespace std;
 
-string str;
-int N, M;
-vector<string> ord;
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
 
-void input()
-{
-    str.resize(100000);
+    string str;
+    int n;
     cin >> str;
-    N = str.size();
-    cin >> M;
-    string line;
-    for (size_t i = 0; i < M; i++)
-    {
-        cin >> line;
-        ord.push_back(line);
-        if (line == "P") {
-            cin >> line;
-            ord[i] += " " + line;
-        }
-    }
-}
+    cin >> n;
 
-void debug()
-{
-    cout << "=== debug ===" << endl;
-    cout << str << endl;
-    cout << N << ", " << M << endl;
-    cout << "=== ord ===" << endl;
-    for (size_t i = 0; i < ord.size(); i++)
-    {
-        cout << ord[i] << endl;
-    }
-    cout << "=== debug ===" << endl;
-}
+    list<char> editor(str.begin(), str.end());
+    auto cursor = editor.end(); // 초기 커서를 문자열 끝으로 설정
 
-void solution()
-{
-    int cursor = N;
-    for (auto elem : ord)
-    {
-        char a = elem[0];
-        switch (a)
-        {
-        case 'P':
-            str.insert(str.begin() + cursor, elem[2]);
-            break;
-        case 'L':
-            if (cursor != 0)
-                cursor--;
-            break;
-        case 'D':
-            if (cursor != N)
-                cursor++;
-            break;
-        case 'B':
-            if (cursor != 0) {
-                str.erase(str.begin() + --cursor);
+    while (n--) {
+        char command;
+        cin >> command;
+
+        if (command == 'L') {
+            if (cursor != editor.begin()) {
+                --cursor;
             }
-            break;
-        default:
-            break;
+        } else if (command == 'D') {
+            if (cursor != editor.end()) {
+                ++cursor;
+            }
+        } else if (command == 'B') {
+            if (cursor != editor.begin()) {
+                cursor = editor.erase(--cursor);
+            }
+        } else if (command == 'P') {
+            char ch;
+            cin >> ch;
+            editor.insert(cursor, ch);
         }
-        cout << str << " cursor: " << cursor << endl;
     }
-}
 
-int main()
-{
-    input();
-
-    // debug();
-
-    solution();
-
-    // debug();
-
-    cout << str << endl;
+    for (char ch : editor) {
+        cout << ch;
+    }
 
     return 0;
 }

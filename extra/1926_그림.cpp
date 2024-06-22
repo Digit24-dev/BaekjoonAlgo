@@ -17,7 +17,7 @@ int max_depth = 0;
 int di[4] = {1, -1, 0, 0};
 int dj[4] = {0, 0, 1, -1};
 
-void bfs(int i, int j){
+void search(int i, int j){
     int temp_depth = 0;
 
     queue<pair<int, int>> q;
@@ -80,7 +80,7 @@ int main() {
             if (!visited[i][j] && map[i][j] == 1)
             {
                 ++pic_cnt;
-                bfs(i, j);
+                search(i, j);
             }
         }
     }
