@@ -18,7 +18,7 @@ vector<int> ans2;
 int di[4] = {1, -1, 0, 0};
 int dj[4] = {0, 0, 1, -1};
 
-vector<pair<cord, cord>> sq;
+vector<pair<CORD, CORD>> sq;
 
 void debug()
 {
@@ -52,13 +52,13 @@ void bfs(int i, int j)
 {
     int area = 0;
 
-    queue<cord> q;
+    queue<CORD> q;
     q.push(make_pair(i, j));
     visited[i][j] = true;
 
     while (!q.empty())
     {
-        cord cur = q.front(); q.pop();
+        CORD cur = q.front(); q.pop();
         area++;
 
         for(int dir=0; dir < 4; dir++) 

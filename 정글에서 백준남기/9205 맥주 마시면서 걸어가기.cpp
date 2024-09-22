@@ -14,14 +14,14 @@ int main()
     ios::sync_with_stdio(0);
 
     int t, n;
-    cord start, end;
+    CORD start, end;
     bool visited[100];
     
     cin >> t;
 
     while (t--)
     {
-        vector<cord> conv;
+        vector<CORD> conv;
 
         cin >> n;
         cin >> start.first >> start.second;
@@ -34,13 +34,13 @@ int main()
         cin >> end.first >> end.second;
 
         memset(visited, false, sizeof(visited));
-        queue<cord> q;
+        queue<CORD> q;
         bool flag = false;
-        q.push(cord(start.first, start.second));
+        q.push(CORD(start.first, start.second));
 
         while (!q.empty())
         {
-            cord cur = q.front(); q.pop();
+            CORD cur = q.front(); q.pop();
             
             if (abs(cur.first - end.first) + abs(cur.second - end.second) <= 1000) {
                 flag = true;
@@ -50,7 +50,7 @@ int main()
                 {
                     auto elem = conv[i];
                     if (!visited[i] && (abs(cur.first - elem.first) + abs(cur.second - elem.second)) <= 1000) {
-                        q.push(cord(elem.first, elem.second));
+                        q.push(CORD(elem.first, elem.second));
                         visited[i] = true;
                     }
                 }
