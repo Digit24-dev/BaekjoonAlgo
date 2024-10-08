@@ -14,7 +14,7 @@ int m,n;
 int pic_cnt = 0;
 int max_depth = 0;
 
-int di[4] = {1, -1, 0, 0};
+int dx[4] = {1, -1, 0, 0};
 int dj[4] = {0, 0, 1, -1};
 
 void search(int i, int j){
@@ -31,7 +31,7 @@ void search(int i, int j){
 
         for (size_t dir = 0; dir < 4; dir++)
         {
-            int ni = cur.first + di[dir];
+            int ni = cur.first + dx[dir];
             int nj = cur.second + dj[dir];
 
             if (!visited[ni][nj] && map[ni][nj] == 1){

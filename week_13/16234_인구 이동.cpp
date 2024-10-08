@@ -9,7 +9,7 @@
 
 using namespace std;
 
-int di[4] = {1, -1, 0, 0};
+int dx[4] = {1, -1, 0, 0};
 int dj[4] = {0, 0, 1, -1};
 
 int N, L, R;
@@ -87,7 +87,7 @@ void simulation(int x, int y)
 
         for (int dir = 0; dir < 4; dir++)
         {
-            int ni = i + di[dir];
+            int ni = i + dx[dir];
             int nj = j + dj[dir];
 
             if (open[ni][nj]) {

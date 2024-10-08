@@ -11,7 +11,7 @@ using namespace std;
 int map[20][20];
 
 // 1 2 3 4 6 7 8 9
-int di[4] = {-1, 0, 1, 1};
+int dx[4] = {-1, 0, 1, 1};
 int dj[4] = {1, 1, 0, 1};
 
 int ri[4] = {1, 0, -1, -1};
@@ -30,7 +30,7 @@ bool checkWinner(int i, int j)
     {
         int cnt = 1;
 
-        int ni = i + di[dir];
+        int ni = i + dx[dir];
         int nj = j + dj[dir];
         int tri = i + ri[dir];
         int trj = j + rj[dir];
@@ -45,7 +45,7 @@ bool checkWinner(int i, int j)
 
         for (size_t k = 0; k < 6; k++)
         {
-            ni += di[dir];
+            ni += dx[dir];
             nj += dj[dir];
 
             if (isRange(ni, nj) && map[ni][nj] == BorW)

@@ -23,7 +23,7 @@ char simul[MAX][MAX];
 bool visited[MAX][MAX];
 
 // L, R, U, D
-int di[4] = {0, 0, -1, 1};
+int dx[4] = {0, 0, -1, 1};
 int dj[4] = {1, -1, 0, 0};
 
 // R, B 구슬 추적
@@ -93,11 +93,11 @@ void move(int dir)
 
     if (rob)
     {
-        int ni = di[dir];
+        int ni = dx[dir];
         int nj = dj[dir];
         while (map[ni][nj] != WALL)
         {
-            ni += di[dir]; 
+            ni += dx[dir]; 
             nj += dj[dir];
         }
         red = make_pair(ni, nj);
@@ -133,7 +133,7 @@ myStruct simulationRED()
 
         for (size_t dir = 0; dir < 4; dir++)
         {
-            int ni = cur.cord.first + di[dir];
+            int ni = cur.cord.first + dx[dir];
             int nj = cur.cord.second + dj[dir];
 
             if (ni < 0 || ni >= N || nj < 0 || nj >= M) continue;
@@ -147,7 +147,7 @@ myStruct simulationRED()
                         break;
                     }
                     visited[ni][nj] = true;
-                    ni += di[dir];
+                    ni += dx[dir];
                     nj += dj[dir];
                 }
                 if (endFlag) {
@@ -162,7 +162,7 @@ myStruct simulationRED()
                 vector<int> _t(cur.routes.begin(), cur.routes.end());
                 _t.push_back(dir);
                 enq.routes = _t;
-                enq.cord = make_pair(ni - di[dir], nj - dj[dir]);
+                enq.cord = make_pair(ni - dx[dir], nj - dj[dir]);
 
                 q.push(enq);
             }

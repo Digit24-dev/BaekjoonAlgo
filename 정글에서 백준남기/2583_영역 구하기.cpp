@@ -15,7 +15,7 @@ bool visited[MAX][MAX];
 int ans1 = 0;
 vector<int> ans2;
 
-int di[4] = {1, -1, 0, 0};
+int dx[4] = {1, -1, 0, 0};
 int dj[4] = {0, 0, 1, -1};
 
 vector<pair<CORD, CORD>> sq;
@@ -63,7 +63,7 @@ void bfs(int i, int j)
 
         for(int dir=0; dir < 4; dir++) 
         {
-            int ni = cur.first + di[dir];
+            int ni = cur.first + dx[dir];
             int nj = cur.second + dj[dir];
 
             if (!visited[ni][nj] && ni >= 0 && ni < M && nj >= 0 && nj < N && !map[ni][nj])
